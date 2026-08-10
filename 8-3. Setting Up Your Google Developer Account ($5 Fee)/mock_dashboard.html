@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chrome Web Store Developer Dashboard - Edit Listing</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    }
+    body {
+      margin: 0;
+      background-color: #f8f9fa;
+      color: #202124;
+    }
+    header {
+      height: 64px;
+      background: #ffffff;
+      border-bottom: 1px solid #dadce0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-title {
+      font-size: 18px;
+      color: #5f6368;
+      font-weight: 500;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .status-badge {
+      background-color: #e8f0fe;
+      color: #1a73e8;
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .btn-submit {
+      background-color: #1a73e8;
+      color: #ffffff;
+      border: none;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(60,64,67,0.3);
+    }
+    .btn-submit:hover {
+      background-color: #1557b0;
+    }
+    .container {
+      display: flex;
+      max-width: 1200px;
+      margin: 24px auto;
+      gap: 32px;
+      padding: 0 24px;
+    }
+    .sidebar {
+      width: 240px;
+      flex-shrink: 0;
+    }
+    .nav-item {
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #5f6368;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-item.active {
+      background-color: #e8f0fe;
+      color: #1a73e8;
+    }
+    .check-mark {
+      color: #137333;
+      font-weight: bold;
+    }
+    .content {
+      flex: 1;
+      background: #ffffff;
+      border: 1px solid #dadce0;
+      border-radius: 8px;
+      padding: 32px;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 500;
+      margin-top: 0;
+      margin-bottom: 24px;
+      border-bottom: 1px solid #f1f3f4;
+      padding-bottom: 12px;
+    }
+    .form-group {
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #3c4043;
+      margin-bottom: 8px;
+    }
+    input[type="text"], textarea, select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #202124;
+      background-color: #fff;
+    }
+    textarea {
+      height: 80px;
+      resize: vertical;
+    }
+    .media-preview {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .icon-box {
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      background-color: #121212;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #dadce0;
+    }
+    .icon-box svg {
+      width: 64px;
+      height: 64px;
+    }
+    .screenshot-box {
+      width: 256px;
+      height: 160px;
+      background-color: #121212;
+      border-radius: 8px;
+      border: 1px solid #dadce0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 12px;
+    }
+    .privacy-box {
+      background-color: #f8f9fa;
+      border: 1px solid #e8eaed;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 8px;
+    }
+    .badge-ok {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background-color: #e6f4ea;
+      color: #137333;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <span class="brand-title">Chrome Web Store Developer Dashboard</span>
+    </div>
+    <div class="header-actions">
+      <span class="status-badge">Draft - Ready to Submit</span>
+      <button class="btn-submit">Submit for Review</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="sidebar">
+      <div class="nav-item active">
+        <span>Store listing</span>
+        <span class="check-mark">✓</span>
+      </div>
+      <div class="nav-item">
+        <span>Privacy practices</span>
+        <span class="check-mark">✓</span>
+      </div>
+      <div class="nav-item">
+        <span>Payments & distribution</span>
+        <span class="check-mark">✓</span>
+      </div>
+    </div>
+
+    <div class="content">
+      <h2>Store Listing Details</h2>
+
+      <div class="form-group">
+        <label>Item name</label>
+        <input type="text" value="My Synced To-Do List" readonly>
+      </div>
+
+      <div class="form-group">
+        <label>Summary</label>
+        <input type="text" value="A dark-mode New Tab dashboard that syncs your tasks seamlessly." readonly>
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea readonly>Replace your New Tab page with a clean, dark-mode to-do list that automatically syncs your tasks across all signed-in Chrome browsers using chrome.storage.sync.</textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Category</label>
+        <select disabled>
+          <option selected>Productivity</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Store Icon (128x128 PNG)</label>
+        <div class="media-preview">
+          <div class="icon-box">
+            <!-- Icon SVG -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="#6c5ce7" stroke-width="2">
+              <path d="M9 11l3 3L22 4"/>
+              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+          </div>
+          <span style="font-size: 13px; color: #137333; font-weight: 500;">✓ icon128.png uploaded</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Screenshots (1280x800 or 640x400)</label>
+        <div class="media-preview">
+          <div class="screenshot-box">
+            <span style="color: #6c5ce7; font-weight: bold; margin-bottom: 4px;">My Tasks</span>
+            <span>[ Dashboard Preview ]</span>
+          </div>
+          <span style="font-size: 13px; color: #137333; font-weight: 500;">✓ 1 screenshot uploaded</span>
+        </div>
+      </div>
+
+      <h2 style="margin-top: 40px;">Privacy Practices Declaration</h2>
+      <div class="privacy-box">
+        <div class="badge-ok">✓ Complete</div>
+        <p style="font-size: 13px; margin: 4px 0; color: #3c4043;"><strong>Single purpose:</strong> Storage and synchronization of user's personal to-do list items.</p>
+        <p style="font-size: 13px; margin: 4px 0; color: #3c4043;"><strong>User Data Collection:</strong> Declared as NOT collecting user data.</p>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

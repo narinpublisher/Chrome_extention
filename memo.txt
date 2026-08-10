@@ -1,0 +1,640 @@
+Chrome
+Extensions
+
+
+
+1-2   Declaring Name, Version, and Description
+
+📄  manifest.json
+----------------------
+{
+  "manifest_version": 3,
+  "name": "My Synced To-Do List",
+  "version": "1.0",
+  "description": "A dark-mode New Tab dashboard that syncs your tasks."
+}
+----------------------
+
+
+
+1-3   Setting Up Your Icon Paths
+
+📄  manifest.json (adding icons)
+----------------------------------------
+{
+  "manifest_version": 3,
+  "name": "My Synced To-Do List",
+  "version": "1.0",
+  "description": "A dark-mode New Tab dashboard that syncs your tasks.",
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  }
+}
+----------------------------------------
+
+
+
+1-4   Unlocking Permissions: Declaring the "storage" API
+
+📄  manifest.json (complete for Chapter 1)
+-----------------------------------------------------
+{
+  "manifest_version": 3,
+  "name": "My Synced To-Do List",
+  "version": "1.0",
+  "description": "A dark-mode New Tab dashboard that syncs your tasks.",
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "permissions": ["storage"]
+}
+-----------------------------------------------------
+
+
+
+3-1   Understanding the chrome_url_overrides Property
+
+📄  manifest.json (adding the New Tab override)
+-----------------------------------------------------------
+{
+  "manifest_version": 3,
+  "name": "My Synced To-Do List",
+  "version": "1.0",
+  "description": "A dark-mode New Tab dashboard that syncs your tasks.",
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "permissions": ["storage"],
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  }
+}
+-----------------------------------------------------------
+
+
+
+3-2   Linking Your index.html to Chrome
+
+📄  index.html (placeholder for Chapter 3)
+----------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Synced To-Do List</title>
+</head>
+<body>
+  <h1>Hello from my New Tab page!</h1>
+</body>
+</html>
+----------------------------------------------------
+
+
+
+4-1   Writing Semantic HTML Over Generic Divs
+
+📄  index.html (semantic skeleton)
+-------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Synced To-Do List</title>
+</head>
+<body>
+  <header>
+    <h1>My Tasks</h1>
+  </header>
+  <main>
+    <!-- form and task list go here -->
+  </main>
+</body>
+</html>
+-------------------------------------------
+
+
+
+4-2   Linking Your Stylesheet and JavaScript Files Safely
+
+📄  index.html (stylesheet and script linked)
+-----------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Synced To-Do List</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>My Tasks</h1>
+  </header>
+  <main>
+    <!-- form and task list go here -->
+  </main>
+</body>
+</html>
+-----------------------------------------------------
+
+
+4-3   Creating the Input Form and the Empty List Holder
+
+📄  index.html (complete for Chapter 4)
+---------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Synced To-Do List</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>My Tasks</h1>
+  </header>
+  <main>
+    <form id="task-form">
+      <input
+        type="text"
+        id="task-input"
+        placeholder="Add a task..."
+        autocomplete="off"
+      />
+      <button type="submit">Add</button>
+    </form>
+    <ul id="task-list"></ul>
+  </main>
+</body>
+</html>
+---------------------------------------------------
+
+
+
+5-1   Declaring Color Palettes with CSS Custom Variables (:root)
+
+📄  style.css (color palette)
+----------------------------------
+:root {
+  --bg-color: #121212;
+  --card-color: #1e1e1e;
+  --text-color: #e5e5e5;
+  --muted-color: #9ca3af;
+  --accent: #6c5ce7;
+  --border-color: #2a2a2a;
+}
+ 
+* {
+  box-sizing: border-box;
+}
+ 
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+----------------------------------
+
+
+
+5-2   Designing a Modern Dark Card UI with CSS Grid
+
+📄  style.css (layout and card styling)
+-----------------------------------------------
+main {
+  display: grid;
+  justify-content: center;
+  padding: 48px 16px;
+}
+ 
+#task-form {
+  display: flex;
+  gap: 8px;
+  width: 360px;
+  margin-bottom: 16px;
+}
+ 
+#task-input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-color);
+  color: var(--text-color);
+}
+ 
+#task-form button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--accent);
+  color: #ffffff;
+  cursor: pointer;
+}
+ 
+#task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 360px;
+  display: grid;
+  gap: 8px;
+}
+ 
+#task-list li {
+  background-color: var(--card-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+-----------------------------------------------
+
+
+
+5-3   Adding Micro-Animations: Smooth Transitions on Hover
+
+📄  style.css (hover transitions)
+---------------------------------------
+#task-list li {
+  background-color: var(--card-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px 14px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+ 
+#task-list li:hover {
+  background-color: #262626;
+  transform: translateX(2px);
+}
+ 
+#task-form button {
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+ 
+#task-form button:hover {
+  transform: scale(1.04);
+  opacity: 0.92;
+}
+---------------------------------------
+
+
+
+6-1   Stopping Default Page Reloads: event.preventDefault()
+
+📄  script.js (stop the reload)
+-------------------------------------
+const form = document.getElementById('task-form');
+const input = document.getElementById('task-input');
+const list = document.getElementById('task-list');
+ 
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+});
+-------------------------------------
+
+
+
+6-2   Capturing Input Value and Creating Elements Dynamically
+
+📄  script.js (create and insert a task)
+-----------------------------------------------
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+ 
+  const taskText = input.value.trim();
+  if (taskText === '') return;
+ 
+  const li = document.createElement('li');
+  li.textContent = taskText;
+  list.appendChild(li);
+ 
+  input.value = '';
+  input.focus();
+});
+-----------------------------------------------
+
+
+6-3   Keeping HTML Lean: Reusable addTask Logic
+
+📄  script.js (complete for Chapter 6)
+-----------------------------------------------
+const form = document.getElementById('task-form');
+const input = document.getElementById('task-input');
+const list = document.getElementById('task-list');
+ 
+function addTask(taskText) {
+  const li = document.createElement('li');
+  li.textContent = taskText;
+  list.appendChild(li);
+}
+ 
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+ 
+  const taskText = input.value.trim();
+  if (taskText === '') return;
+ 
+  addTask(taskText);
+ 
+  input.value = '';
+  input.focus();
+});
+-----------------------------------------------
+
+
+
+7-1   Handling Clicks Efficiently: The Power of Event Delegation
+
+📄  script.js (build the full task row)
+---------------------------------------------
+function addTask(taskText) {
+  const li = document.createElement('li');
+ 
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.className = 'task-checkbox';
+ 
+  const span = document.createElement('span');
+  span.textContent = taskText;
+  span.className = 'task-text';
+ 
+  const deleteBtn = document.createElement('button');
+  deleteBtn.type = 'button';
+  deleteBtn.textContent = '✕';
+  deleteBtn.className = 'delete-btn';
+ 
+  li.append(checkbox, span, deleteBtn);
+  list.appendChild(li);
+}
+---------------------------------------------
+
+
+📄  script.js (event delegation for checking off and deleting)
+-----------------------------------------------------------------------------
+list.addEventListener('click', (event) => {
+  const li = event.target.closest('li');
+  if (!li) return;
+ 
+  if (event.target.classList.contains('task-checkbox')) {
+    li.classList.toggle('completed');
+  }
+ 
+  if (event.target.classList.contains('delete-btn')) {
+    li.remove();
+  }
+});
+-----------------------------------------------------------------------------
+
+
+📄  style.css (checkbox, delete button, completed state)
+-----------------------------------------------------------------------
+#task-list li.completed .task-text {
+  text-decoration: line-through;
+  color: var(--muted-color);
+}
+ 
+.delete-btn {
+  background: none;
+  border: none;
+  color: var(--muted-color);
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.15s ease;
+}
+ 
+.delete-btn:hover {
+  color: #ef4444;
+}
+-----------------------------------------------------------------------
+
+
+7-2   Tracking State: Generating Unique IDs with Date.now() and Storing Them as data-id
+
+
+📄  script.js (unique IDs and restorable state)
+---------------------------------------------------------
+function addTask(taskText, id = Date.now(), completed = false) {
+  const li = document.createElement('li');
+  li.dataset.id = id;
+  if (completed) li.classList.add('completed');
+ 
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.className = 'task-checkbox';
+  checkbox.checked = completed;
+ 
+  const span = document.createElement('span');
+  span.textContent = taskText;
+  span.className = 'task-text';
+ 
+  const deleteBtn = document.createElement('button');
+  deleteBtn.type = 'button';
+  deleteBtn.textContent = '✕';
+  deleteBtn.className = 'delete-btn';
+ 
+  li.append(checkbox, span, deleteBtn);
+  list.appendChild(li);
+}
+---------------------------------------------------------
+
+
+7-3   Saving and Restoring Tasks with chrome.storage.sync
+
+📄  script.js (saveTasks)
+-------------------------------
+function saveTasks() {
+  const tasks = [...list.children].map((li) => ({
+    id: Number(li.dataset.id),
+    text: li.querySelector('.task-text').textContent,
+    completed: li.classList.contains('completed'),
+  }));
+ 
+  chrome.storage.sync.set({ tasks });
+}
+-------------------------------
+
+📄  script.js (saving on every change)
+------------------------------------------------
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+ 
+  const taskText = input.value.trim();
+  if (taskText === '') return;
+ 
+  addTask(taskText);
+  saveTasks();
+ 
+  input.value = '';
+  input.focus();
+});
+ 
+list.addEventListener('click', (event) => {
+  const li = event.target.closest('li');
+  if (!li) return;
+ 
+  if (event.target.classList.contains('task-checkbox')) {
+    li.classList.toggle('completed');
+    saveTasks();
+  }
+ 
+  if (event.target.classList.contains('delete-btn')) {
+    li.remove();
+    saveTasks();
+  }
+});
+------------------------------------------------
+
+
+📄  script.js (restoring on load)
+----------------------------------------
+chrome.storage.sync.get(['tasks'], (result) => {
+  const savedTasks = result.tasks || [];
+  savedTasks.forEach((task) => {
+    addTask(task.text, task.id, task.completed);
+  });
+});
+----------------------------------------
+
+
+7-4   Multi-Window Syncing: Listening for Storage Changes
+
+📄  script.js (renderTasks, load, and live sync)
+------------------------------------------------------------
+function renderTasks(tasks) {
+  list.innerHTML = '';
+  tasks.forEach((task) => {
+    addTask(task.text, task.id, task.completed);
+  });
+}
+ 
+chrome.storage.sync.get(['tasks'], (result) => {
+  renderTasks(result.tasks || []);
+});
+ 
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === 'sync' && changes.tasks) {
+    renderTasks(changes.tasks.newValue || []);
+  }
+});
+------------------------------------------------------------
+
+
+📄  script.js (complete for Chapter 7)
+-------------------------------------------------
+const form = document.getElementById('task-form');
+const input = document.getElementById('task-input');
+const list = document.getElementById('task-list');
+ 
+function addTask(taskText, id = Date.now(), completed = false) {
+  const li = document.createElement('li');
+  li.dataset.id = id;
+  if (completed) li.classList.add('completed');
+ 
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.className = 'task-checkbox';
+  checkbox.checked = completed;
+ 
+  const span = document.createElement('span');
+  span.textContent = taskText;
+  span.className = 'task-text';
+ 
+  const deleteBtn = document.createElement('button');
+  deleteBtn.type = 'button';
+  deleteBtn.textContent = '✕';
+  deleteBtn.className = 'delete-btn';
+ 
+  li.append(checkbox, span, deleteBtn);
+  list.appendChild(li);
+}
+ 
+function renderTasks(tasks) {
+  list.innerHTML = '';
+  tasks.forEach((task) => {
+    addTask(task.text, task.id, task.completed);
+  });
+}
+ 
+function saveTasks() {
+  const tasks = [...list.children].map((li) => ({
+    id: Number(li.dataset.id),
+    text: li.querySelector('.task-text').textContent,
+    completed: li.classList.contains('completed'),
+  }));
+ 
+  chrome.storage.sync.set({ tasks });
+}
+ 
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+ 
+  const taskText = input.value.trim();
+  if (taskText === '') return;
+ 
+  addTask(taskText);
+  saveTasks();
+ 
+  input.value = '';
+  input.focus();
+});
+ 
+list.addEventListener('click', (event) => {
+  const li = event.target.closest('li');
+  if (!li) return;
+ 
+  if (event.target.classList.contains('task-checkbox')) {
+    li.classList.toggle('completed');
+    saveTasks();
+  }
+ 
+  if (event.target.classList.contains('delete-btn')) {
+    li.remove();
+    saveTasks();
+  }
+});
+ 
+chrome.storage.sync.get(['tasks'], (result) => {
+  renderTasks(result.tasks || []);
+});
+ 
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === 'sync' && changes.tasks) {
+    renderTasks(changes.tasks.newValue || []);
+  }
+});
+-------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

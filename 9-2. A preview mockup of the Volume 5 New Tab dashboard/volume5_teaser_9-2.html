@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Tab Dashboard - Volume 5 Weather Preview</title>
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-color: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Teaser Header Banner */
+    .teaser-badge {
+      position: absolute;
+      top: 24px;
+      background: linear-gradient(135deg, #0284c7, #6366f1);
+      color: #ffffff;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    }
+
+    /* Main Dashboard Layout (Same design from previous chapters) */
+    .dashboard-container {
+      width: 100%;
+      max-width: 640px;
+      padding: 24px;
+    }
+
+    .time-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .clock {
+      font-size: 64px;
+      font-weight: 200;
+      letter-spacing: -1px;
+      margin: 0;
+      color: var(--text-main);
+    }
+
+    .greeting {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    /* Weather Card (Volume 5 Feature) */
+    .weather-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .weather-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+    }
+
+    .weather-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .location-box h2 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .location-box p {
+      margin: 4px 0 0 0;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .temp-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .weather-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--accent-glow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .temp-display {
+      font-size: 48px;
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    .weather-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--card-border);
+      text-align: center;
+    }
+
+    .stat-item label {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-item span {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    /* API Fetch Indicator Footer */
+    .api-status {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--accent-color);
+      font-family: monospace;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-color);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-color);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Teaser Badge for Volume 5 -->
+  <div class="teaser-badge">Volume 5 Preview: Live Weather & Fetch API</div>
+
+  <div class="dashboard-container">
+    
+    <!-- Time Header -->
+    <div class="time-header">
+      <h1 class="clock">09:41</h1>
+      <p class="greeting">Good morning, Developer</p>
+    </div>
+
+    <!-- Live Weather Card (Replacing Tasks) -->
+    <div class="weather-card">
+      <div class="weather-main">
+        <div class="location-box">
+          <h2>San Francisco</h2>
+          <p>Partly Cloudy</p>
+        </div>
+        <div class="temp-box">
+          <div class="weather-icon">
+            <!-- Weather SVG Icon (Sun + Cloud) -->
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+              <path d="M16 16A5 5 0 1 0 9 9.3 7 7 0 1 0 16 16z"/>
+            </svg>
+          </div>
+          <div class="temp-display">68°</div>
+        </div>
+      </div>
+
+      <!-- Forecast Details -->
+      <div class="weather-stats">
+        <div class="stat-item">
+          <label>Humidity</label>
+          <span>64%</span>
+        </div>
+        <div class="stat-item">
+          <label>Wind</label>
+          <span>12 mph</span>
+        </div>
+        <div class="stat-item">
+          <label>Forecast</label>
+          <span>H: 72° L: 55°</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Simulated Fetch API Status -->
+    <div class="api-status">
+      <span class="pulse-dot"></span>
+      <span>fetch('https://api.weather.com/v1/live').then(...)</span>
+    </div>
+
+  </div>
+
+</body>
+</html>
