@@ -1,0 +1,81 @@
+:root {
+  --bg-color: #121212;
+  --card-color: #1e1e1e;
+  --text-color: #e5e5e5;
+  --muted-color: #9ca3af;
+  --accent: #6c5ce7;
+  --border-color: #2a2a2a;
+}
+ 
+* {
+  box-sizing: border-box;
+}
+ 
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+main {
+  display: grid;
+  justify-content: center;
+  padding: 48px 16px;
+}
+ 
+#task-form {
+  display: flex;
+  gap: 8px;
+  width: 360px;
+  margin-bottom: 16px;
+}
+ 
+#task-input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-color);
+  color: var(--text-color);
+}
+ 
+#task-form button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--accent);
+  color: #ffffff;
+  cursor: pointer;
+}
+ 
+#task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 360px;
+  display: grid;
+  gap: 8px;
+}
+ 
+#task-list li {
+  background-color: var(--card-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px 14px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+ 
+#task-list li:hover {
+  background-color: #262626;
+  transform: translateX(2px);
+}
+ 
+#task-form button {
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+ 
+#task-form button:hover {
+  transform: scale(1.04);
+  opacity: 0.92;
+}
