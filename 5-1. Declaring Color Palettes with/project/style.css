@@ -1,0 +1,19 @@
+:root {
+  --bg-color: #121212;
+  --card-color: #1e1e1e;
+  --text-color: #e5e5e5;
+  --muted-color: #9ca3af;
+  --accent: #6c5ce7;
+  --border-color: #2a2a2a;
+}
+ 
+* {
+  box-sizing: border-box;
+}
+ 
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
